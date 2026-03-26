@@ -9,29 +9,73 @@ interface TestimonialSectionProps {
   testimonials: Testimonial[]
 }
 
+const AUTOPLAY_TIME = 6500
+
 const TestimonialSection: React.FC<TestimonialSectionProps> = ({ testimonials }) => {
   const [activeIndex, setActiveIndex] = useState(0)
-  const timerRef = useRef<NodeJS.Timeout | null>(null)
+
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const remainingTimeRef = useRef(AUTOPLAY_TIME)
+  const lastStartTimeRef = useRef<number>(Date.now())
+  const isPausedRef = useRef(false)
+
   const startX = useRef(0)
   const isDragging = useRef(false)
-  const startAutoPlay = () => {
-    if (timerRef.current) clearInterval(timerRef.current)
-    timerRef.current = setInterval(() => {
+
+  const clearTimer = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    timeoutRef.current = null
+  }
+
+  const startTimer = () => {
+    clearTimer()
+    lastStartTimeRef.current = Date.now()
+
+    timeoutRef.current = setTimeout(() => {
+      remainingTimeRef.current = AUTOPLAY_TIME
       setActiveIndex((prev) => (prev + 1) % testimonials.length)
-    }, 6500)
+    }, remainingTimeRef.current)
+  }
+
+  const pauseTimer = () => {
+    if (isPausedRef.current) return
+    isPausedRef.current = true
+
+    const elapsed = Date.now() - lastStartTimeRef.current
+    remainingTimeRef.current = Math.max(0, remainingTimeRef.current - elapsed)
+
+    clearTimer()
+  }
+
+  const resumeTimer = () => {
+    if (!isPausedRef.current) return
+    isPausedRef.current = false
+
+    if (remainingTimeRef.current <= 0) {
+      remainingTimeRef.current = AUTOPLAY_TIME
+    }
+
+    startTimer()
+  }
+
+  const restartTimer = () => {
+    remainingTimeRef.current = AUTOPLAY_TIME
+    isPausedRef.current = false
+    startTimer()
   }
 
   const goToNext = () => {
     setActiveIndex((prev) => (prev + 1) % testimonials.length)
-    startAutoPlay()
+    restartTimer()
   }
 
   const goToPrev = () => {
     setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
-    startAutoPlay()
+    restartTimer()
   }
 
   const handleTouchStart = (e: React.TouchEvent) => {
+    pauseTimer()
     startX.current = e.touches[0].clientX
     isDragging.current = true
   }
@@ -46,15 +90,42 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({ testimonials })
       goToNext()
     } else if (diff < -50) {
       goToPrev()
+    } else {
+      resumeTimer()
     }
 
     isDragging.current = false
   }
 
+  const handleMouseDown = () => {
+    pauseTimer()
+  }
+
+  const handleMouseUp = () => {
+    resumeTimer()
+  }
+
   useEffect(() => {
-    startAutoPlay()
+    restartTimer()
+
     return () => {
-      if (timerRef.current) clearInterval(timerRef.current)
+      clearTimer()
+    }
+  }, [testimonials.length])
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        pauseTimer()
+      } else {
+        resumeTimer()
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
     }
   }, [])
 
@@ -65,10 +136,12 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({ testimonials })
         subtitle="Para reforçar a qualidade das minhas habilidades - veja o que usuários reais dos meus serviços têm a dizer sobre sua experiência."
       />
 
-      <div 
+      <div
         className="relative mt-12 h-[580px] w-full overflow-hidden touch-pan-y"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
       >
         <div className="relative mx-auto h-full max-w-[1100px]">
           {testimonials.map((testimonial, index) => {
@@ -83,7 +156,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({ testimonials })
             if (position === 0) {
               translateX = '0'
               translateY = '-35px'
-              scale = 0.70
+              scale = 0.7
               opacity = 1
               zIndex = 30
             } else if (position === 1) {
@@ -116,14 +189,12 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({ testimonials })
                   zIndex,
                 }}
               >
-                <TestimonialCard
-                  testimonial={testimonial}
-                  isActive={position === 0}
-                />
+                <TestimonialCard testimonial={testimonial} isActive={position === 0} />
               </div>
             )
           })}
         </div>
+
         <button
           onClick={goToPrev}
           className="hidden lg:block absolute left-6 top-1/2 z-40 -translate-y-1/2 rounded-full bg-secondary/90 p-5 text-3xl shadow-2xl hover:bg-accent hover:text-white transition-all md:left-12"
@@ -138,13 +209,14 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({ testimonials })
           →
         </button>
       </div>
+
       <div className="mt-10 flex justify-center gap-3">
         {testimonials.map((_, idx) => (
           <button
             key={idx}
             onClick={() => {
               setActiveIndex(idx)
-              startAutoPlay()
+              restartTimer()
             }}
             className={`h-3 rounded-full transition-all ${
               idx === activeIndex ? 'bg-accent w-9' : 'bg-neutral/40 w-3'
