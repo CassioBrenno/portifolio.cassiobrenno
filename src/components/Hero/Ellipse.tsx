@@ -2,9 +2,7 @@
 
 import { forwardRef } from 'react'
 
-interface EllipseProps extends React.SVGProps<SVGSVGElement> {
- 
-}
+interface EllipseProps extends React.SVGProps<SVGSVGElement> {}
 
 const Ellipse = forwardRef<SVGSVGElement, EllipseProps>(
   ({ className, ...props }, ref) => {
