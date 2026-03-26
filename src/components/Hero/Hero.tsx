@@ -7,7 +7,6 @@ import { HeroImage } from '../../utils/images'
 import Ellipse from './Ellipse'
 
 const Hero = () => {
-  // O ideal é que o hook já retorne o tipo correto
   const ellipseRef = useRotatingAnimation()
 
   const role = useRoleSwitcher({
