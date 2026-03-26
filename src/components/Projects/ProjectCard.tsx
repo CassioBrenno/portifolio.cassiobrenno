@@ -29,30 +29,34 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ data, isFeatured = false }) =
     <div
       className={`group bg-white/5 backdrop-blur-xl border border-white/10
       rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.4)]
-      overflow-hidden transition-all duration-500
+      overflow-hidden transition-all duration-500 select-none
       lg:hover:scale-[1.02]
       lg:hover:border-white/20
       lg:hover:shadow-[0_30px_80px_rgba(0,0,0,0.55)]
       ${isFeatured ? 'ring-2 ring-accent/70 scale-[1.02]' : ''}`}
     >
-
-      <div className="flex flex-col lg:flex-row h-[800px] lg:h-[550px]">
+      {/* ALTURA FIXA NO MOBILE */}
+      <div className="flex flex-col lg:flex-row h-[570px] lg:h-[550px]">
         
-        <div className="relative lg:w-5/12 w-full h-[300px] lg:h-full bg-white flex items-center justify-center overflow-hidden">
+        {/* CONTAINER DA IMAGEM */}
+        <div className="relative lg:w-5/12 w-full h-[220px] lg:h-full bg-white flex items-center justify-center overflow-hidden">
           <Image
             src={cover}
             alt={title}
             fill
             className="object-contain transition-transform duration-700 lg:group-hover:scale-110"
             priority={isFeatured}
+            draggable={false}
           />
         </div>
 
+        {/* CONTAINER DAS INFORMAÇÕES */}
         <div className="lg:w-7/12 w-full flex flex-col h-full">
           
-          <div className="flex-1 overflow-y-auto p-6 sm:p-8 lg:p-10">
+          {/* ÁREA SCROLLÁVEL */}
+          <div className="flex-1 overflow-y-auto p-5 sm:p-7 lg:p-10">
             <div className="flex items-start justify-between gap-4">
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-primary-content">
+              <h3 className="text-xl sm:text-2xl lg:text-4xl font-semibold tracking-tight text-primary-content">
                 {title}
               </h3>
 
@@ -69,11 +73,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ data, isFeatured = false }) =
               )}
             </div>
 
-            <p className="mt-4 sm:mt-6 text-primary-content/80 leading-relaxed text-[15px] sm:text-[17px]">
+            <p className="mt-4 text-primary-content/80 leading-relaxed text-[14px] sm:text-[16px]">
               {shortDescription}
             </p>
 
-            <div className="mt-6 sm:mt-8 grid grid-cols-2 gap-3 sm:gap-4 text-sm">
+            <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 text-sm">
               {visitors && (
                 <div className="flex items-center gap-2">
                   <span className="text-accent">👥</span>
@@ -111,7 +115,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ data, isFeatured = false }) =
             </div>
           </div>
 
-          <div className="p-6 sm:p-8 lg:p-10 pt-4 bg-transparent">
+          {/* BOTÕES FIXOS */}
+          <div className="p-5 sm:p-7 lg:p-10 pt-3 bg-transparent">
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               {livePreview && (
                 <Link
