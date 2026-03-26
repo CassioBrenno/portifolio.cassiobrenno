@@ -18,38 +18,30 @@ const Ellipse = forwardRef<SVGSVGElement, EllipseProps>(
         {...props}
       >
         <defs>
-          <linearGradient 
-            id="ellipseGradient" 
-            x1="0%" y1="0%" x2="100%" y2="100%" 
+          <linearGradient
+            id="ellipseGradient"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="100%"
             gradientUnits="objectBoundingBox"
           >
-            <stop offset="0%" stopColor="var(--p)" />
-            <stop offset="4%" stopColor="var(--p)" />
-            <stop offset="6%" stopColor="var(--s)" />
-            <stop offset="9%" stopColor="var(--a)" />
-            <stop offset="12%" stopColor="var(--n)" />
-            <stop offset="16%" stopColor="var(--p)" />
+            <stop offset="0%" stopColor="var(--ellipse-main)" />
+            <stop offset="12%" stopColor="var(--ellipse-main)" />
 
-            <stop offset="25%" stopColor="var(--p)" />
-            <stop offset="29%" stopColor="var(--s)" />
-            <stop offset="32%" stopColor="var(--a)" />
-            <stop offset="35%" stopColor="var(--n)" />
-            <stop offset="39%" stopColor="var(--p)" />
+            <stop offset="18%" stopColor="var(--s)" />
+            <stop offset="24%" stopColor="var(--a)" />
+            <stop offset="30%" stopColor="var(--n)" />
 
-            <stop offset="48%" stopColor="var(--p)" />
-            <stop offset="52%" stopColor="var(--s)" />
-            <stop offset="55%" stopColor="var(--a)" />
-            <stop offset="58%" stopColor="var(--n)" />
-            <stop offset="62%" stopColor="var(--p)" />
+            <stop offset="40%" stopColor="var(--ellipse-main)" />
+            <stop offset="55%" stopColor="var(--ellipse-main)" />
 
-            <stop offset="71%" stopColor="var(--p)" />
-            <stop offset="75%" stopColor="var(--s)" />
-            <stop offset="78%" stopColor="var(--a)" />
-            <stop offset="81%" stopColor="var(--n)" />
-            <stop offset="85%" stopColor="var(--p)" />
+            <stop offset="62%" stopColor="var(--s)" />
+            <stop offset="70%" stopColor="var(--a)" />
+            <stop offset="78%" stopColor="var(--n)" />
 
-            <stop offset="94%" stopColor="var(--p)" />
-            <stop offset="100%" stopColor="var(--p)" />
+            <stop offset="88%" stopColor="var(--ellipse-main)" />
+            <stop offset="100%" stopColor="var(--ellipse-main)" />
           </linearGradient>
         </defs>
 
