@@ -2,7 +2,7 @@
   "priority": 1,
   "title": "Flappy Bird",
   "shortDescription": "Projeto desenvolvido em Swing e consiste de alta complexidade performática, o jogo entrega diversos conteúdos e entre eles, um sistema de menus, configurações, criação de perfis, criação e leitura de arquivos para guardar informações de configurações e/ou pontuações, modo de jogo normal ou personalizado e adaptabilidade para múltiplas chamadas sendo eles teclado e/ou mouse.",
-  "cover": "/images/flappybird.png",
+  "cover": "/images/flappybird0.png",
   "livePreview": " https://github.com/CassioBrenno/FlappyBird.git",
   "type": "Personal Project",
   "siteAge": "4 meses atrás"
