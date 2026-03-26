@@ -139,7 +139,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ projects }) => {
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
       >
-        <div className="relative mx-auto max-w-[920px] px-4 sm:px-6 min-h-[570px] lg:min-h-[580px]">
+        <div className="relative mx-auto max-w-[920px] px-4 sm:px-6 min-h-[600px] lg:min-h-[580px]">
           {projects.map((project, index) => {
             const isActive = index === activeIndex
             return (
