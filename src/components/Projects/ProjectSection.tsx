@@ -40,7 +40,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({ projects }) => {
     if (timerRef.current) clearInterval(timerRef.current)
     timerRef.current = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % projects.length)
-    }, 7000)
+    }, 10000)
   }
 
   const goToNext = () => {
