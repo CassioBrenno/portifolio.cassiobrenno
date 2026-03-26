@@ -35,11 +35,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ data, isFeatured = false }) =
       lg:hover:shadow-[0_30px_80px_rgba(0,0,0,0.55)]
       ${isFeatured ? 'ring-2 ring-accent/70 scale-[1.02]' : ''}`}
     >
-      {/* ALTURA FIXA NO MOBILE */}
-      <div className="flex flex-col lg:flex-row h-[570px] lg:h-[550px]">
-        
-        {/* CONTAINER DA IMAGEM */}
-        <div className="relative lg:w-5/12 w-full h-[220px] lg:h-full bg-white flex items-center justify-center overflow-hidden">
+      <div className="flex flex-col lg:flex-row h-[600px] lg:h-[550px]">
+
+        <div className="relative w-full flex-[1] shrink-0 lg:flex-none lg:w-5/12 lg:h-full bg-white flex items-center justify-center overflow-hidden">
           <Image
             src={cover}
             alt={title}
@@ -50,11 +48,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ data, isFeatured = false }) =
           />
         </div>
 
-        {/* CONTAINER DAS INFORMAÇÕES */}
-        <div className="lg:w-7/12 w-full flex flex-col h-full">
-          
-          {/* ÁREA SCROLLÁVEL */}
-          <div className="flex-1 overflow-y-auto p-5 sm:p-7 lg:p-10">
+        <div className="w-full flex-[2] lg:flex-none lg:w-7/12 flex flex-col h-full min-h-0">
+
+          <div className="flex-1 overflow-y-auto p-5 sm:p-7 lg:p-10 min-h-0">
             <div className="flex items-start justify-between gap-4">
               <h3 className="text-xl sm:text-2xl lg:text-4xl font-semibold tracking-tight text-primary-content">
                 {title}
@@ -115,8 +111,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ data, isFeatured = false }) =
             </div>
           </div>
 
-          {/* BOTÕES FIXOS */}
-          <div className="p-5 sm:p-7 lg:p-10 pt-3 bg-transparent">
+          <div className="p-5 sm:p-7 lg:p-10 pt-3 bg-transparent shrink-0">
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               {livePreview && (
                 <Link
