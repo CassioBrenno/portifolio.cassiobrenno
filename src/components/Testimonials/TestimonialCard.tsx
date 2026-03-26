@@ -15,17 +15,21 @@ const TestimonialCard: FC<TestimonialCardProps> = ({
 }) => {
   return (
     <div
-      className={`bg-secondary border-border flex flex-col items-center justify-between gap-6 rounded-3xl border p-6 text-center transition-all duration-500 ${
+      className={`bg-secondary border-border flex h-[600px] flex-col items-center justify-between gap-4 rounded-3xl border p-6 text-center transition-all duration-500 ${
         isActive
           ? 'shadow-2xl shadow-accent/30 scale-[1.02] border-accent/50'
           : 'opacity-90'
       }`}
     >
-      <p className="text-neutral leading-8 before:content-['“'] after:content-['”'] text-[15px] md:text-base">
-        {feedback}
-      </p>
 
-      <div className="flex items-center justify-center gap-1.5">
+      <div
+        className="text-neutral leading-7 text-[15px] md:text-base w-full overflow-y-auto pr-2 touch-pan-y overscroll-contain"
+        style={{ WebkitOverflowScrolling: 'touch' }}
+      >
+        <p className="before:content-['“'] after:content-['”']">{feedback}</p>
+      </div>
+
+      <div className="flex items-center justify-center gap-1.5 shrink-0">
         {Array.from({ length: 5 }, (_, idx) => (
           <StarIcon
             key={idx}
@@ -37,7 +41,7 @@ const TestimonialCard: FC<TestimonialCardProps> = ({
       </div>
 
       <div
-        className="mx-auto h-[68px] w-[68px] overflow-hidden rounded-full border-2 border-neutral/30 select-none"
+        className="mx-auto h-[68px] w-[68px] shrink-0 overflow-hidden rounded-full border-2 border-neutral/30 select-none"
         onContextMenu={(e) => e.preventDefault()}
       >
         <Image
@@ -50,7 +54,7 @@ const TestimonialCard: FC<TestimonialCardProps> = ({
         />
       </div>
 
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center shrink-0">
         <p className="text-neutral text-lg font-semibold">{name}</p>
 
         <p className="text-neutral/60 text-sm flex items-center justify-center gap-1.5">
