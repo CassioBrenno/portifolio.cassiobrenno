@@ -2,7 +2,7 @@
 
 import { forwardRef } from 'react'
 
-interface EllipseProps extends React.SVGProps<SVGSVGElement> {}
+type EllipseProps = React.SVGProps<SVGSVGElement>
 
 const Ellipse = forwardRef<SVGSVGElement, EllipseProps>(
   ({ className, ...props }, ref) => {
@@ -20,10 +20,7 @@ const Ellipse = forwardRef<SVGSVGElement, EllipseProps>(
         <defs>
           <linearGradient 
             id="ellipseGradient" 
-            x1="0%" 
-            y1="0%" 
-            x2="100%" 
-            y2="100%" 
+            x1="0%" y1="0%" x2="100%" y2="100%" 
             gradientUnits="objectBoundingBox"
           >
             <stop offset="0%" stopColor="var(--p)" />
