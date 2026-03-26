@@ -7,7 +7,9 @@ import { HeroImage } from '../../utils/images'
 import Ellipse from './Ellipse'
 
 const Hero = () => {
+  // O ideal é que o hook já retorne o tipo correto
   const ellipseRef = useRotatingAnimation()
+
   const role = useRoleSwitcher({
     roles: ['FULLSTACK DEVELOPER', 'Criando Soluções Escaláveis', 'Aplicações Web e Mobile'],
   })
@@ -27,7 +29,6 @@ const Hero = () => {
 
           <h2 className="text-neutral mt-3 text-base sm:text-lg">
             Crio soluções inovadoras para resolver problemas do mundo real.
-
           </h2>
 
           <div className="mt-6 flex flex-wrap gap-6">
@@ -60,7 +61,7 @@ const Hero = () => {
               fill
               priority
               sizes="(min-width: 1024px) 25.75rem, (min-width: 768px) 20rem, (min-width: 640px) 15rem, 14rem"
-              alt="Felipe Joseph — Full Stack Developer"
+              alt="Cássio Brenno — Full Stack Developer"
               className="object-contain p-7"
             />
 
