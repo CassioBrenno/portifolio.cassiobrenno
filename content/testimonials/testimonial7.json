@@ -1,0 +1,9 @@
+{
+  "name": "João Pedro",
+  "title": "Dev. Sr. Naja Soluções",
+  "flag": "/image/svg/br.svg",
+  "feedback": "ESSE HOMEM É UM BRUXO! Deixa eu contar uma histórias a vocês, certa época nós estávamos com problemas em uma aplicação em javascript para automação de um fluxo financeiro que estava muito divergente do cenário real, entrava equipe e saía equipe e nada de conseguir resolver essa divergência, até que em certo dia nosso tech lead resolveu perguntar ao Brenno se ele conseguiria dar uma olhada nela e ele com toda humildade do mundo respondeu 'posso sim', ele foi pra casa e trabalhou em cima dele por 3 DIAS sem falar com ninguém, no outro turno de nossa escala presencial viemos perguntar como andava o projeto e ele respondeu 'deu certo'. '!!!' Nem devo dizer que todos ficaram sem entender, como?! Ele com toda calma do mundo respondeu 'eu mexi' e quando fomos ver ele tinha alterado praticamento tudo no código, passamos uma semana de testes e validação até que ela subiu para produção e se tornou nossa primeira e única até agora aplicação 'intocável' rsrsrs. Nem devo dizer que depois desse dia todo mundo na EMPRESA ficou sabendo dele, satisfação gigante!",
+  "image": "/image/Joao-Pedro.png",
+  "stars": 5,
+  "createdAt": "2026-03-26"
+}
